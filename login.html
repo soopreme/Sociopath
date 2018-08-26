@@ -1,35 +1,28 @@
 <!DOCTYPE html>
-
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Ready -- Login</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script>
-    $('#loginUser').click(() => {
-        var uname = $('#uname').val();
-        var pword = $('#pword').val();
-        $.ajax({
-            type: "POST",
-            url: '/login',
-            data: {name:uname,pass:pword},
-            success: succ(),
-            dataType: json
-        });
-    })
-
-    const succ = () => {
-        window.location = '/profile'
-    }
-</script>
-<link rel="stylesheet" type="text/css" href="../style.css">
 <html>
-    <body id="login">
-        <div class="container">
-            <h1><span>Soopreme™</span></h1>
-            <h2>Welcome to Sociopath.</h2>
-            <br><input id="uname" type="text" placeholder="Username" />
-            <br><br><input id="pword" type="password" placeholder="Password" />
-            <br><button id="loginUser">Login</button>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+
+    <title>Ready -- Login</title>
+
+    <form>
+        <div class="form-group">
+            <label for="InputUsername">User name</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
-    </body>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </html>
