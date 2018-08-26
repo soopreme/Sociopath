@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Ready -- Login</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    $('#loginUser').click(() => {
+        var uname = $('#uname').val();
+        var pword = $('#pword').val();
+        $.ajax({
+            type: "POST",
+            url: '/login',
+            data: {name:uname,pass:pword},
+            success: succ(),
+            dataType: json
+        });
+    })
+
+    const succ = () => {
+        window.location = '/profile'
+    }
+</script>
+<link rel="stylesheet" type="text/css" href="../style.css">
+<html>
+    <body id="login">
+        <div class="container">
+            <h1><span>Soopreme™</span></h1>
+            <h2>Welcome to Sociopath.</h2>
+            <br><input id="uname" type="text" placeholder="Username" />
+            <br><br><input id="pword" type="password" placeholder="Password" />
+            <br><button id="loginUser">Login</button>
+        </div>
+    </body>
+</html>
