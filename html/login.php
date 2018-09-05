@@ -9,12 +9,13 @@
     </head>
 
     <title>Ready -- Login</title>
+    <div class="container center">
 
-    <div class="container">
-
+       
         <form>
+        <img class="img-size" src=../img/logo.png >
             <div class="form-group">
-                <label for="InputUsername">Username</label>
+                <label for="InputUsername textsize">Username</label>
                 <input type="User" class="form-control" id="InputUsername" aria-describedby="Username" placeholder="Enter Username">
             </div>
 
