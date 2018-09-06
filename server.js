@@ -24,7 +24,7 @@ const con = new sql({
 });
 
 //express app.use() stuff
-app.use(express.json());
+app.use(express.urlencoded());
 app.use(cookieParser());
 app.use(express.static(__dirname));
 
@@ -60,7 +60,7 @@ app.get('/profile', (req, res) => {
     if(!user[0]) {
         return res.sendStatus(403);
     }
-    res.send(prender.self(user[0].name));
+    res.send(prender.self(0, user[0].name));
     res.end();
 })
 app.get('/profile/:id', (req, res) => {
@@ -72,9 +72,39 @@ app.get('/profile/:id', (req, res) => {
     }
 })
 
+//edit profile
+app.get('/edit', (req, res) => {
+    var user = con.query(`SELECT * FROM tokenref WHERE token='${req.cookies.sooToken}'`);
+    if(!user[0]){
+        res.sendStatus(401);
+    }
+    res.send(prender.self(1, user[0].name));
+});
+app.post('/edit', (req, res) => {
+    var user = con.query(`SELECT * FROM tokenref WHERE token='${req.cookies.sooToken}'`);
+    if(!user[0]){
+        res.sendStatus(403);
+    }
+    con.query(`UPDATE profiles SET purl="${req.body.purl}", nick="${req.body.nick}", bio="${req.body.bio}" WHERE name='${user[0].name}'`);
+    res.redirect('/profile');
+})
+
+
+app.get('/feed', (req, res) => {
+    var user = con.query(`SELECT * FROM tokenref WHERE token='${req.cookies.sooToken}'`);
+    if(!user[0]){
+        return res.sendStatus(401);
+    }
+    var feed = con.query(`SELECT * FROM feed WHERE user='${user[0]}' ORDER BY timestamp DESC`);
+    if(!feed[0]){
+        return res.sendStatus(204);
+    }
+    
+})
+
 //login
 app.get('/login', (req, res) => {
-    res.sendFile(__dirname + '/login.html');
+    res.sendFile(__dirname + '/html/login.html');
 })
 
 //listen on a port
