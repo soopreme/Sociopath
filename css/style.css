@@ -1,3 +1,30 @@
 body{
-    background-color:#d02120;
+    background-color:#fff;
+    font-size: 25px;
+}
+
+label.text-align{
+    
+}
+
+div.center{
+    width: 30em;
+    min-height: 10em;
+    vertical-align: middle;
+    height: 10em;
+    position: absolute;
+    top: 20%;                        
+    transform: translate(0, -50%);
+    left: 50px;
+    right: 50px
+
+}
+
+#label.textsize{
+    font-size: 25px
+}
+
+.img-size{
+    width:720px;
+    height:200px;
 }
